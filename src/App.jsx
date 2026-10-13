@@ -1,305 +1,426 @@
-import { useState } from 'react'
-import './App.css'
+
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import mihretuPhoto from "./assets/profile.jpg";
+import "./App.css";
+
+const roles = [
+  "Aspiring Full-Stack Developer",
+  "React Developer",
+  "Backend Developer",
+  "Software Engineering Student",
+];
+
+const skills = [
+  { icon: "🌐", name: "HTML", category: "Frontend" },
+  { icon: "🎨", name: "CSS", category: "Frontend" },
+  { icon: "⚡", name: "JavaScript", category: "Frontend" },
+  { icon: "⚛️", name: "React", category: "Frontend" },
+  { icon: "🟢", name: "Node.js", category: "Backend" },
+  { icon: "🚀", name: "Express.js", category: "Backend" },
+  { icon: "🗄️", name: "MySQL", category: "Database" },
+  { icon: "🔧", name: "Git & GitHub", category: "Tools" },
+];
+
+const projects = [
+  {
+    number: "01",
+    icon: "🎓",
+    title: "Student Management System",
+    description:
+      "A full-stack learning project for managing student information with a React frontend, Express API, and MySQL database.",
+    technologies: ["React", "Node.js", "Express", "MySQL"],
+    github: "https://github.com/yeshi-830/full-stack-project",
+    status: "Full-stack project",
+  },
+  {
+    number: "02",
+    icon: "💼",
+    title: "Personal Portfolio",
+    description:
+      "A responsive personal website showcasing my developer profile, skills, projects, and professional links.",
+    technologies: ["React", "JavaScript", "CSS", "Vite"],
+    github: "https://github.com/yeshi-830/portifolio",
+    status: "Portfolio website",
+  },
+  {
+    number: "03",
+    icon: "📋",
+    title: "Pro Task Manager",
+    description:
+      "A project concept for organizing tasks, tracking progress, and improving everyday productivity.",
+    technologies: ["React", "JavaScript", "CSS"],
+    github: "https://github.com/yeshi-830",
+    status: "Learning project",
+  },
+];
 
 function App() {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [typedText, setTypedText] = useState("");
+  const [showTopButton, setShowTopButton] = useState(false);
 
-  const navigation = [
-    ['Home', 'home'],
-    ['About', 'about'],
-    ['Skills', 'skills'],
-    ['Projects', 'projects'],
-    ['Contact', 'contact'],
-  ]
+  useEffect(() => {
+    document.body.classList.toggle("light-mode", !darkMode);
 
-  const skills = [
-    'HTML',
-    'CSS',
-    'JavaScript',
-    'React',
-    'Node.js',
-    'Express',
-    'MySQL',
-    'Git & GitHub',
-  ]
+    return () => {
+      document.body.classList.remove("light-mode");
+    };
+  }, [darkMode]);
+
+  useEffect(() => {
+    const role = roles[roleIndex];
+    let index = 0;
+    let timeout;
+    setTypedText("");
+
+    const interval = window.setInterval(() => {
+      index += 1;
+      setTypedText(role.slice(0, index));
+
+      if (index >= role.length) {
+        window.clearInterval(interval);
+        timeout = window.setTimeout(() => {
+          setRoleIndex((current) => (current + 1) % roles.length);
+        }, 2000);
+      }
+    }, 65);
+
+    return () => {
+      window.clearInterval(interval);
+      window.clearTimeout(timeout);
+    };
+  }, [roleIndex]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowTopButton(window.scrollY > 450);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const closeMenu = () => setMenuOpen(false);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
-    <div className="portfolio">
-      {/* Navigation */}
-      <nav className="navbar">
-        <a
-          className="logo"
-          href="#home"
-          onClick={() => setMenuOpen(false)}
-        >
-          mihretu<span>.dev</span>
+    <div className="app">
+      <div className="background-effects" aria-hidden="true">
+        <div className="glow glow-one" />
+        <div className="glow glow-two" />
+      </div>
+
+      <header className="navbar">
+        <a className="logo" href="#home" onClick={closeMenu}>
+          yeshi<span>.dev</span>
         </a>
 
-        <button
-          className="menu-toggle"
-          type="button"
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? '✕' : '☰'}
-        </button>
+        <div className="nav-actions">
+          <button
+            className="theme-button"
+            onClick={() => setDarkMode((current) => !current)}
+            type="button"
+            aria-label={`Switch to ${darkMode ? "light" : "dark"} theme`}
+          >
+            {darkMode ? "☀️" : "🌙"}
+          </button>
 
-        <div className={`nav-links ${menuOpen ? 'nav-links-open' : ''}`}>
-          {navigation.map(([label, id]) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              onClick={() => setMenuOpen(false)}
-            >
-              {label}
-            </a>
-          ))}
+          <button
+            className="menu-button"
+            onClick={() => setMenuOpen((current) => !current)}
+            type="button"
+            aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+            aria-expanded={menuOpen}
+          >
+            {menuOpen ? "✕" : "☰"}
+          </button>
         </div>
-      </nav>
+
+        <nav className={`nav-links ${menuOpen ? "nav-open" : ""}`}>
+          {["Home", "About", "Skills", "Projects", "Contact"].map(
+            (item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                onClick={closeMenu}
+              >
+                {item}
+              </a>
+            )
+          )}
+        </nav>
+      </header>
 
       <main>
-        {/* Home */}
-        <section className="hero" id="home">
-          <div className="hero-content">
-            <p className="welcome">WELCOME TO MY PORTFOLIO</p>
+        <section id="home" className="hero">
+          <motion.div
+            className="availability"
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <span className="status-dot" />
+            Learning, building, and growing
+          </motion.div>
 
-            <h1>
-              Hi, I'm <span>Mihiretu</span>
-            </h1>
+          <motion.div
+            className="profile-wrapper"
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.65 }}
+          >
+            <img
+              src={mihretuPhoto}
+              alt="Mihiretu Yeshi"
+              className="profile-photo"
+              fetchPriority="high"
+            />
+          </motion.div>
 
-            <h2>Full-Stack Developer</h2>
+          <motion.p
+            className="welcome"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            WELCOME TO MY PORTFOLIO
+          </motion.p>
 
-            <p className="description">
-              I build modern, responsive websites and web applications.
-              I enjoy solving problems, learning new technologies, and
-              turning creative ideas into reality.
-            </p>
+          <motion.h1
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            Hi, I'm <span>Mihiretu Yeshi</span>
+          </motion.h1>
 
-            <div className="hero-buttons">
-              <a href="#projects" className="btn primary">
-                View My Projects
-              </a>
-
-              <a href="#contact" className="btn secondary">
-                Contact Me
-              </a>
-            </div>
-
-            <div className="social-links">
-              <a
-                href="https://github.com/yeshi830"
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub ↗
-              </a>
-
-              <a href="#skills">Explore My Skills ↓</a>
-            </div>
-          </div>
-
-          <div className="profile-area">
-         <img
-  src="/profile.jpg"
-  alt="Mihiretu's profile"
-  className="profile-photo"
-/>
-
-            <p className="profile-caption">
-              Building ideas into reality ✨
-            </p>
-          </div>
-        </section>
-
-        {/* About */}
-        <section className="section" id="about">
-          <p className="section-label">GET TO KNOW ME</p>
-
-          <h2>
-            About <span>Me</span>
+          <h2 className="typing-role" aria-label={roles[roleIndex]}>
+            {typedText}
+            <span className="cursor" aria-hidden="true">|</span>
           </h2>
 
-          <p className="section-description">
-            I'm a developer passionate about creating useful, attractive,
-            and user-friendly applications. I'm continuously improving my
-            skills by building projects and learning modern technologies.
+          <p className="description">
+            I build responsive web experiences and full-stack applications
+            while continuously improving my software engineering skills.
           </p>
 
-          <div className="info-grid">
-            <article className="info-card">
-              <div className="card-icon">💻</div>
-              <h3>My Passion</h3>
-              <p>
-                Creating useful websites and applications with clean,
-                maintainable code.
-              </p>
-            </article>
+          <div className="buttons">
+            <a href="#projects" className="button primary-button">
+              Explore My Work <span aria-hidden="true">↗</span>
+            </a>
 
-            <article className="info-card">
-              <div className="card-icon">🚀</div>
-              <h3>My Goal</h3>
-              <p>
-                Growing as a developer and building practical solutions
-                that solve real problems.
-              </p>
-            </article>
+            <a href="#contact" className="button secondary-button">
+              Contact Me
+            </a>
+          </div>
+
+          <div className="social-links hero-socials">
+            <a
+              href="https://github.com/yeshi-830"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub ↗
+            </a>
+            <a href="#skills">My Skills ↓</a>
           </div>
         </section>
 
-        {/* Skills */}
-        <section className="section" id="skills">
-          <p className="section-label">WHAT I WORK WITH</p>
+        <section className="stats-section" aria-label="Portfolio overview">
+          <div className="stats-grid">
+            <div className="stat-card">
+              <strong>{skills.length}</strong>
+              <span>Skills & Tools</span>
+            </div>
+            <div className="stat-card">
+              <strong>{projects.length}</strong>
+              <span>Featured Projects</span>
+            </div>
+            <div className="stat-card">
+              <strong>∞</strong>
+              <span>Learning Mindset</span>
+            </div>
+          </div>
+        </section>
 
-          <h2>
-            My <span>Skills</span>
-          </h2>
+        <section id="about" className="section about">
+          <p className="section-title">GET TO KNOW ME</p>
+          <h2>About Me</h2>
+          <p className="section-intro">
+            I'm a software engineering student working toward becoming a
+            skilled full-stack developer.
+          </p>
 
-          <p className="section-description">
-            Technologies I'm learning and using to build web applications.
+          <div className="about-content">
+            <div className="about-text">
+              <h3>Turning ideas into web applications</h3>
+              <p>
+                I'm learning to build accessible, responsive websites and
+                applications using modern web technologies.
+              </p>
+              <p>
+                I enjoy solving problems, understanding how frontend and
+                backend systems work together, and learning by building
+                practical projects.
+              </p>
+              <p>
+                My goal is to keep improving my skills and create software
+                that solves real problems.
+              </p>
+            </div>
+
+            <div className="about-card">
+              <h3>My Current Focus</h3>
+              <p>🌐 Responsive web development</p>
+              <p>⚛️ React and JavaScript</p>
+              <p>🟢 Node.js and Express APIs</p>
+              <p>🗄️ MySQL and database design</p>
+              <p>🔧 Git and GitHub workflows</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="skills" className="section skills">
+          <p className="section-title">TOOLS I AM LEARNING</p>
+          <h2>My Skills</h2>
+          <p className="section-intro">
+            Technologies I'm using and practicing as I develop my skills.
           </p>
 
           <div className="skills-grid">
-            {skills.map((skill) => (
-              <div className="skill-card" key={skill}>
-                <span className="skill-dot"></span>
-                {skill}
-              </div>
+            {skills.map((skill, index) => (
+              <motion.article
+                className="skill-card"
+                key={skill.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.35, delay: index * 0.04 }}
+                whileHover={{ y: -4 }}
+              >
+                <span className="skill-icon" aria-hidden="true">
+                  {skill.icon}
+                </span>
+                <h3>{skill.name}</h3>
+                <p>{skill.category}</p>
+              </motion.article>
             ))}
           </div>
         </section>
 
-        {/* Projects */}
-        <section className="section" id="projects">
-          <p className="section-label">SOME OF MY WORK</p>
-
-          <h2>
-            Featured <span>Projects</span>
-          </h2>
-
-          <p className="section-description">
-            A selection of projects from my software development journey.
+        <section id="projects" className="section projects">
+          <p className="section-title">WHAT I'M BUILDING</p>
+          <h2>Featured Projects</h2>
+          <p className="section-intro">
+            Explore my work, the technologies behind it, and the code.
           </p>
 
           <div className="projects-grid">
-            <article className="project-card">
-              <div className="project-icon">🎓</div>
-
-              <p className="project-number">PROJECT 01</p>
-
-              <h3>Student Management System</h3>
-
-              <p className="project-description">
-                A web application for organizing student information
-                and academic records.
-              </p>
-
-              <div className="tags">
-                <span>React</span>
-                <span>Node.js</span>
-                <span>MySQL</span>
-              </div>
-
-              <a
-                className="project-link"
-                href="https://github.com/yeshi830"
-                target="_blank"
-                rel="noreferrer"
+            {projects.map((project, index) => (
+              <motion.article
+                className="project-card"
+                key={project.number}
+                initial={{ opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
+                whileHover={{ y: -5 }}
               >
-                Explore on GitHub ↗
-              </a>
-            </article>
+                <div className="project-top">
+                  <span className="project-number">{project.number}</span>
+                  <span className="project-icon" aria-hidden="true">
+                    {project.icon}
+                  </span>
+                </div>
 
-            <article className="project-card">
-              <div className="project-icon">🌐</div>
+                <p className="project-status">{project.status}</p>
+                <h3>{project.title}</h3>
+                <p className="project-description">
+                  {project.description}
+                </p>
 
-              <p className="project-number">PROJECT 02</p>
+                <div className="project-tech">
+                  {project.technologies.map((technology) => (
+                    <span key={technology}>{technology}</span>
+                  ))}
+                </div>
 
-              <h3>Personal Portfolio</h3>
-
-              <p className="project-description">
-                A responsive personal website presenting my skills,
-                projects, and developer journey.
-              </p>
-
-              <div className="tags">
-                <span>React</span>
-                <span>CSS</span>
-                <span>Vite</span>
-              </div>
-
-              <a
-                className="project-link"
-                href="https://github.com/yeshi830"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Explore on GitHub ↗
-              </a>
-            </article>
-
-            <article className="project-card">
-              <div className="project-icon">💡</div>
-
-              <p className="project-number">PROJECT 03</p>
-
-              <h3>Future Project</h3>
-
-              <p className="project-description">
-                A place for my upcoming ideas and new software development
-                experiments.
-              </p>
-
-              <div className="tags">
-                <span>JavaScript</span>
-                <span>Learning</span>
-              </div>
-
-              <a className="project-link" href="#contact">
-                Discuss a project ↗
-              </a>
-            </article>
+                <a
+                  className="project-link"
+                  href={project.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`View ${project.title} on GitHub`}
+                >
+                  View on GitHub <span aria-hidden="true">↗</span>
+                </a>
+              </motion.article>
+            ))}
           </div>
         </section>
 
-        {/* Contact */}
-        <section className="section contact-section" id="contact">
-          <p className="section-label">LET'S CONNECT</p>
-
-          <h2>
-            Let's Build Something <span>Great</span>
-          </h2>
-
-          <p className="section-description">
-            Have a project idea or want to connect? I'd love to hear from you.
+        <section id="contact" className="section contact">
+          <p className="section-title">LET'S CONNECT</p>
+          <h2>Let's build something useful.</h2>
+          <p className="section-intro">
+            Explore my code, follow my learning journey, or connect with me
+            about software development.
           </p>
 
-          <a
-            className="btn primary contact-button"
-            href="mailto:mihiretuyeshi@gmail.com"
-          >
-            Email Me ↗
-          </a>
-
-          <p className="contact-social">
-            Find me on{' '}
+          <div className="contact-links">
             <a
-              href="https://github.com/yeshi830"
+              className="contact-card"
+              href="https://github.com/yeshi-830"
               target="_blank"
               rel="noreferrer"
             >
-              GitHub
+              <span>💻</span>
+              <strong>GitHub</strong>
+              <small>Explore my repositories ↗</small>
             </a>
-          </p>
+
+            <a
+              className="contact-card"
+              href="https://github.com/yeshi-830?tab=repositories"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span>📂</span>
+              <strong>My Repositories</strong>
+              <small>Browse my projects ↗</small>
+            </a>
+          </div>
         </section>
       </main>
 
       <footer className="footer">
-        <p>© {new Date().getFullYear()} Mihiretu. Built with React.</p>
+        <a className="logo" href="#home">
+          yeshi<span>.dev</span>
+        </a>
+        <p>
+          © {new Date().getFullYear()} Mihiretu Yeshi. Built with React.
+        </p>
         <a href="#home">Back to top ↑</a>
       </footer>
+
+      {showTopButton && (
+        <button
+          type="button"
+          className="back-to-top"
+          onClick={scrollToTop}
+          aria-label="Back to top"
+        >
+          ↑
+        </button>
+      )}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
+
