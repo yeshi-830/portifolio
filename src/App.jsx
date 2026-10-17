@@ -386,26 +386,50 @@ function App() {
 
             <a
               className="contact-card"
-              href="https://github.com/yeshi-830?tab=repositories"
-              target="_blank"
-              rel="noreferrer"
+              href="mailto:mihiretuyeshi@gmail.com?subject=Portfolio%20Inquiry"
             >
-              <span>📂</span>
-              <strong>My Repositories</strong>
-              <small>Browse my projects ↗</small>
+              <span>✉️</span>
+              <strong>Email</strong>
+              <small>mihiretuyeshi@gmail.com</small>
+            </a>
+          </div>
+
+          <div className="contact-message-box">
+            <label htmlFor="project-message">Send a quick message</label>
+            <textarea
+              id="project-message"
+              name="project-message"
+              rows="5"
+              placeholder="Tell me about your project, idea, or opportunity..."
+            />
+            <a
+              className="contact-submit"
+              href="mailto:mihiretuyeshi@gmail.com?subject=Portfolio%20Inquiry"
+            >
+              Send via email
             </a>
           </div>
         </section>
       </main>
 
       <footer className="footer">
-        <a className="logo" href="#home">
-          yeshi<span>.dev</span>
-        </a>
-        <p>
+        <div className="footer-brand">
+          <a className="logo" href="#home">
+            yeshi<span>.dev</span>
+          </a>
+          <p>Open to learning, collaboration, and meaningful projects.</p>
+        </div>
+
+        <div className="footer-links" aria-label="Footer navigation">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <p className="footer-copy">
           © {new Date().getFullYear()} Mihiretu Yeshi. Built with React.
         </p>
-        <a href="#home">Back to top ↑</a>
       </footer>
 
       {showTopButton && (
