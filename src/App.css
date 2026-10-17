@@ -129,6 +129,7 @@ main,
 .navbar {
   position: sticky;
   top: 0;
+  z-index: 5;
   min-height: 72px;
   padding: 14px max(24px, calc((100% - 1150px) / 2));
   display: flex;
