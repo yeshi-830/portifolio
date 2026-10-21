@@ -56,6 +56,39 @@ const projects = [
     live: "",
     status: "Learning project",
   },
+  {
+    number: "04",
+    icon: "👥",
+    title: "Full-Stack User Management App",
+    description:
+      "A full-stack learning project focused on managing user records through a React interface, Express API, and MySQL database.",
+    technologies: ["React", "Node.js", "Express", "MySQL"],
+    github: "https://github.com/yeshi-830/full-stack-project",
+    live: "",
+    status: "Full-stack project",
+  },
+  {
+    number: "05",
+    icon: "🍽️",
+    title: "Cafeteria Management System",
+    description:
+      "A project concept for organizing cafeteria operations, menu information, and customer orders as the application develops.",
+    technologies: ["React", "JavaScript", "CSS", "Node.js"],
+    github: "https://github.com/yeshi-830",
+    live: "",
+    status: "In development",
+  },
+  {
+    number: "06",
+    icon: "✅",
+    title: "Pro Task Manager",
+    description:
+      "A productivity application in development, designed to organize tasks, manage priorities, and track work using a Kanban-style board.",
+    technologies: ["React", "JavaScript", "CSS"],
+    github: "https://github.com/yeshi-830/pro-task-manager",
+    live: "",
+    status: "In development",
+  },
 ];
 
 function App() {
@@ -369,9 +402,7 @@ function App() {
                 whileHover={{ y: -5 }}
               >
                 <div className="project-top">
-                  <span className="project-number">
-                    {project.number}
-                  </span>
+                  <span className="project-number">{project.number}</span>
 
                   <span className="project-icon" aria-hidden="true">
                     {project.icon}
@@ -452,9 +483,7 @@ function App() {
           </div>
 
           <div className="contact-message-box">
-            <label htmlFor="project-message">
-              Send a quick message
-            </label>
+            <label htmlFor="project-message">Send a quick message</label>
 
             <textarea
               id="project-message"
