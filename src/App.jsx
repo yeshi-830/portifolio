@@ -98,6 +98,38 @@ function App() {
   const [typedText, setTypedText] = useState("");
   const [showTopButton, setShowTopButton] = useState(false);
 
+
+  useEffect(() => {
+    const updateProgress = () => {
+      const scrollableHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+      const progress =
+        scrollableHeight > 0
+          ? (window.scrollY / scrollableHeight) * 100
+          : 0;
+
+      document.body.style.setProperty(
+        "--reading-progress",
+        `${progress}%`
+      );
+    };
+
+    updateProgress();
+
+    window.addEventListener("scroll", updateProgress, {
+      passive: true,
+    });
+    window.addEventListener("resize", updateProgress);
+
+    return () => {
+      window.removeEventListener("scroll", updateProgress);
+      window.removeEventListener("resize", updateProgress);
+      document.body.style.removeProperty("--reading-progress");
+    };
+  }, []);
+
+
   useEffect(() => {
     document.body.classList.toggle("light-mode", !darkMode);
 
