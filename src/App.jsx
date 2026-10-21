@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import mihretuPhoto from "./assets/profile.jpg";
@@ -26,11 +25,13 @@ const projects = [
   {
     number: "01",
     icon: "🎓",
-    title: "Student Management System",
+    title: "University Registration System",
     description:
-      "A full-stack learning project for managing student information with a React frontend, Express API, and MySQL database.",
+      "A full-stack university registration project for managing student information and courses with a React frontend, Express API, and MySQL database.",
     technologies: ["React", "Node.js", "Express", "MySQL"],
-    github: "https://github.com/yeshi-830/full-stack-project",
+    github:
+      "https://github.com/yeshi-830/university-registration-system",
+    live: "",
     status: "Full-stack project",
   },
   {
@@ -38,19 +39,21 @@ const projects = [
     icon: "💼",
     title: "Personal Portfolio",
     description:
-      "A responsive personal website showcasing my developer profile, skills, projects, and professional links.",
+      "A responsive personal portfolio website showcasing my developer profile, skills, projects, and professional links.",
     technologies: ["React", "JavaScript", "CSS", "Vite"],
     github: "https://github.com/yeshi-830/portifolio",
+    live: "",
     status: "Portfolio website",
   },
   {
     number: "03",
     icon: "📋",
-    title: "Pro Task Manager",
+    title: "ProTask Hub",
     description:
-      "A project concept for organizing tasks, tracking progress, and improving everyday productivity.",
+      "A task management project designed to organize tasks, track progress, and improve everyday productivity.",
     technologies: ["React", "JavaScript", "CSS"],
     github: "https://github.com/yeshi-830",
+    live: "",
     status: "Learning project",
   },
 ];
@@ -74,6 +77,7 @@ function App() {
     const role = roles[roleIndex];
     let index = 0;
     let timeout;
+
     setTypedText("");
 
     const interval = window.setInterval(() => {
@@ -82,6 +86,7 @@ function App() {
 
       if (index >= role.length) {
         window.clearInterval(interval);
+
         timeout = window.setTimeout(() => {
           setRoleIndex((current) => (current + 1) % roles.length);
         }, 2000);
@@ -99,16 +104,24 @@ function App() {
       setShowTopButton(window.scrollY > 450);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
     handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const closeMenu = () => setMenuOpen(false);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -118,6 +131,7 @@ function App() {
         <div className="glow glow-two" />
       </div>
 
+      {/* Navigation */}
       <header className="navbar">
         <a className="logo" href="#home" onClick={closeMenu}>
           yeshi<span>.dev</span>
@@ -160,6 +174,7 @@ function App() {
       </header>
 
       <main>
+        {/* Hero */}
         <section id="home" className="hero">
           <motion.div
             className="availability"
@@ -201,7 +216,9 @@ function App() {
 
           <h2 className="typing-role" aria-label={roles[roleIndex]}>
             {typedText}
-            <span className="cursor" aria-hidden="true">|</span>
+            <span className="cursor" aria-hidden="true">
+              |
+            </span>
           </h2>
 
           <p className="description">
@@ -231,16 +248,19 @@ function App() {
           </div>
         </section>
 
+        {/* Portfolio statistics */}
         <section className="stats-section" aria-label="Portfolio overview">
           <div className="stats-grid">
             <div className="stat-card">
               <strong>{skills.length}</strong>
               <span>Skills & Tools</span>
             </div>
+
             <div className="stat-card">
               <strong>{projects.length}</strong>
               <span>Featured Projects</span>
             </div>
+
             <div className="stat-card">
               <strong>∞</strong>
               <span>Learning Mindset</span>
@@ -248,9 +268,11 @@ function App() {
           </div>
         </section>
 
+        {/* About */}
         <section id="about" className="section about">
           <p className="section-title">GET TO KNOW ME</p>
           <h2>About Me</h2>
+
           <p className="section-intro">
             I'm a software engineering student working toward becoming a
             skilled full-stack developer.
@@ -259,15 +281,18 @@ function App() {
           <div className="about-content">
             <div className="about-text">
               <h3>Turning ideas into web applications</h3>
+
               <p>
                 I'm learning to build accessible, responsive websites and
                 applications using modern web technologies.
               </p>
+
               <p>
                 I enjoy solving problems, understanding how frontend and
                 backend systems work together, and learning by building
                 practical projects.
               </p>
+
               <p>
                 My goal is to keep improving my skills and create software
                 that solves real problems.
@@ -285,9 +310,11 @@ function App() {
           </div>
         </section>
 
+        {/* Skills */}
         <section id="skills" className="section skills">
           <p className="section-title">TOOLS I AM LEARNING</p>
           <h2>My Skills</h2>
+
           <p className="section-intro">
             Technologies I'm using and practicing as I develop my skills.
           </p>
@@ -300,12 +327,16 @@ function App() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.15 }}
-                transition={{ duration: 0.35, delay: index * 0.04 }}
+                transition={{
+                  duration: 0.35,
+                  delay: index * 0.04,
+                }}
                 whileHover={{ y: -4 }}
               >
                 <span className="skill-icon" aria-hidden="true">
                   {skill.icon}
                 </span>
+
                 <h3>{skill.name}</h3>
                 <p>{skill.category}</p>
               </motion.article>
@@ -313,11 +344,14 @@ function App() {
           </div>
         </section>
 
+        {/* Projects */}
         <section id="projects" className="section projects">
           <p className="section-title">WHAT I'M BUILDING</p>
           <h2>Featured Projects</h2>
+
           <p className="section-intro">
-            Explore my work, the technologies behind it, and the code.
+            Explore my work, the technologies behind it, and the source code.
+            Live demos appear when a deployed website is available.
           </p>
 
           <div className="projects-grid">
@@ -328,11 +362,17 @@ function App() {
                 initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
+                transition={{
+                  duration: 0.4,
+                  delay: index * 0.08,
+                }}
                 whileHover={{ y: -5 }}
               >
                 <div className="project-top">
-                  <span className="project-number">{project.number}</span>
+                  <span className="project-number">
+                    {project.number}
+                  </span>
+
                   <span className="project-icon" aria-hidden="true">
                     {project.icon}
                   </span>
@@ -340,6 +380,7 @@ function App() {
 
                 <p className="project-status">{project.status}</p>
                 <h3>{project.title}</h3>
+
                 <p className="project-description">
                   {project.description}
                 </p>
@@ -350,23 +391,39 @@ function App() {
                   ))}
                 </div>
 
-                <a
-                  className="project-link"
-                  href={project.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`View ${project.title} on GitHub`}
-                >
-                  View on GitHub <span aria-hidden="true">↗</span>
-                </a>
+                <div className="project-actions">
+                  <a
+                    className="project-link"
+                    href={project.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`View ${project.title} on GitHub`}
+                  >
+                    View Source Code <span aria-hidden="true">↗</span>
+                  </a>
+
+                  {project.live && (
+                    <a
+                      className="project-link live-demo-link"
+                      href={project.live}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`Open live demo of ${project.title}`}
+                    >
+                      Live Demo <span aria-hidden="true">↗</span>
+                    </a>
+                  )}
+                </div>
               </motion.article>
             ))}
           </div>
         </section>
 
+        {/* Contact */}
         <section id="contact" className="section contact">
           <p className="section-title">LET'S CONNECT</p>
           <h2>Let's build something useful.</h2>
+
           <p className="section-intro">
             Explore my code, follow my learning journey, or connect with me
             about software development.
@@ -395,13 +452,17 @@ function App() {
           </div>
 
           <div className="contact-message-box">
-            <label htmlFor="project-message">Send a quick message</label>
+            <label htmlFor="project-message">
+              Send a quick message
+            </label>
+
             <textarea
               id="project-message"
               name="project-message"
               rows="5"
               placeholder="Tell me about your project, idea, or opportunity..."
             />
+
             <a
               className="contact-submit"
               href="mailto:mihiretuyeshi@gmail.com?subject=Portfolio%20Inquiry"
@@ -412,11 +473,13 @@ function App() {
         </section>
       </main>
 
+      {/* Footer */}
       <footer className="footer">
         <div className="footer-brand">
           <a className="logo" href="#home">
             yeshi<span>.dev</span>
           </a>
+
           <p>Open to learning, collaboration, and meaningful projects.</p>
         </div>
 
@@ -447,4 +510,3 @@ function App() {
 }
 
 export default App;
-
