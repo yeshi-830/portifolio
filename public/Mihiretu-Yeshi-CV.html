@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CV of Mihiretu Yeshi, software engineering student and aspiring full-stack developer."
+    />
+    <title>Mihiretu Yeshi | CV</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: #17243b;
+        background: #e9edf4;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 28px 16px;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .resume {
+        width: min(210mm, 100%);
+        min-height: 297mm;
+        margin: 0 auto;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 18px 60px rgba(23, 36, 59, 0.16);
+      }
+
+      .resume-header {
+        position: relative;
+        padding: 18mm 16mm 13mm;
+        overflow: hidden;
+        background: #101a30;
+        color: #fff;
+      }
+
+      .resume-header::after {
+        position: absolute;
+        top: -55mm;
+        right: -24mm;
+        width: 95mm;
+        height: 95mm;
+        border: 1px solid rgba(124, 211, 232, 0.22);
+        border-radius: 50%;
+        content: "";
+        box-shadow: 0 0 0 15mm rgba(124, 211, 232, 0.035);
+      }
+
+      .resume-kicker {
+        position: relative;
+        z-index: 1;
+        margin-bottom: 5mm;
+        color: #82d9e8;
+        font-size: 9pt;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        font-size: 30pt;
+        letter-spacing: -0.8px;
+        line-height: 1.1;
+      }
+
+      .resume-role {
+        position: relative;
+        z-index: 1;
+        margin: 3mm 0 7mm;
+        color: #c8d3e6;
+        font-size: 12pt;
+        font-weight: 500;
+      }
+
+      .resume-contact {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.5mm 6mm;
+        color: #e2e8f3;
+        font-size: 9pt;
+      }
+
+      .resume-contact a:hover {
+        color: #82d9e8;
+      }
+
+      .resume-content {
+        padding: 10mm 16mm 13mm;
+      }
+
+      .resume-section {
+        margin-bottom: 7mm;
+      }
+
+      .resume-section:last-child {
+        margin-bottom: 0;
+      }
+
+      .resume-section h2 {
+        margin: 0 0 3mm;
+        padding-bottom: 2mm;
+        border-bottom: 1px solid #dfe5ee;
+        color: #263a59;
+        font-size: 10pt;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+      }
+
+      .resume-section p {
+        margin: 0;
+        color: #43516a;
+        font-size: 9.5pt;
+        line-height: 1.65;
+      }
+
+      .skill-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 3mm 8mm;
+      }
+
+      .skill-group strong {
+        display: block;
+        margin-bottom: 1mm;
+        color: #263a59;
+        font-size: 9pt;
+      }
+
+      .skill-group span {
+        color: #526078;
+        font-size: 9pt;
+        line-height: 1.5;
+      }
+
+      .project {
+        margin-bottom: 4.5mm;
+      }
+
+      .project:last-child {
+        margin-bottom: 0;
+      }
+
+      .project-heading {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 1mm;
+      }
+
+      .project-heading h3 {
+        margin: 0;
+        color: #263a59;
+        font-size: 10pt;
+      }
+
+      .project-heading a {
+        flex-shrink: 0;
+        color: #087e9b;
+        font-size: 8pt;
+        font-weight: 600;
+      }
+
+      .project-tech {
+        display: block;
+        margin-top: 1mm;
+        color: #087e9b;
+        font-size: 8pt;
+        font-weight: 650;
+      }
+
+      .focus-line {
+        padding: 3mm 4mm;
+        border-left: 3px solid #31b6c8;
+        background: #f1f8fa;
+      }
+
+      @media (max-width: 600px) {
+        body {
+          padding: 0;
+        }
+
+        .resume {
+          min-height: 100vh;
+        }
+
+        .resume-header {
+          padding: 38px 26px 30px;
+        }
+
+        .resume-content {
+          padding: 26px;
+        }
+
+        .resume-contact {
+          flex-direction: column;
+          gap: 8px;
+        }
+      }
+
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      @media print {
+        html,
+        body {
+          width: 210mm;
+          margin: 0;
+          padding: 0;
+          background: #fff;
+        }
+
+        .resume {
+          width: 210mm;
+          min-height: 297mm;
+          margin: 0;
+          box-shadow: none;
+        }
+
+        .resume-header {
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <article class="resume">
+      <header class="resume-header">
+        <div class="resume-kicker">Curriculum Vitae</div>
+        <h1>Mihiretu Yeshi</h1>
+        <p class="resume-role">Software Engineering Student | Aspiring Full-Stack Developer</p>
+        <div class="resume-contact">
+          <span>Ethiopia</span>
+          <a href="tel:0953632191">0953632191</a>
+          <a href="mailto:mihiretuyeshi@gmail.com">mihiretuyeshi@gmail.com</a>
+          <a href="https://t.me/mire1212">Telegram: @mire1212</a>
+          <a href="https://github.com/yeshi-830">github.com/yeshi-830</a>
+        </div>
+      </header>
+
+      <main class="resume-content">
+        <section class="resume-section">
+          <h2>Profile</h2>
+          <p>
+            Software engineering student from Ethiopia focused on building
+            responsive web applications and growing as a full-stack developer.
+            Hands-on experience through personal and academic-style projects
+            using React, JavaScript, Node.js, Express.js, and MySQL. Interested
+            in practical problem-solving, thoughtful user experiences, and
+            continuous learning.
+          </p>
+        </section>
+
+        <section class="resume-section">
+          <h2>Technical Skills</h2>
+          <div class="skill-grid">
+            <div class="skill-group">
+              <strong>Frontend</strong>
+              <span>HTML, CSS, JavaScript, React</span>
+            </div>
+            <div class="skill-group">
+              <strong>Backend</strong>
+              <span>Node.js, Express.js</span>
+            </div>
+            <div class="skill-group">
+              <strong>Database</strong>
+              <span>MySQL</span>
+            </div>
+            <div class="skill-group">
+              <strong>Tools &amp; Libraries</strong>
+              <span>Git, GitHub, Framer Motion</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="resume-section">
+          <h2>Selected Projects</h2>
+          <article class="project">
+            <div class="project-heading">
+              <h3>University Registration System</h3>
+              <a href="https://github.com/yeshi-830/university-registration-system">View on GitHub</a>
+            </div>
+            <p>
+              University management application for registering students,
+              viewing courses, and managing student information.
+            </p>
+            <span class="project-tech">React · Node.js · Express.js · MySQL</span>
+          </article>
+
+          <article class="project">
+            <div class="project-heading">
+              <h3>Personal Portfolio</h3>
+              <a href="https://github.com/yeshi-830/portifolio">View on GitHub</a>
+            </div>
+            <p>
+              Responsive portfolio presenting skills, projects, background,
+              and contact information.
+            </p>
+            <span class="project-tech">React · JavaScript · CSS · Framer Motion</span>
+          </article>
+
+          <article class="project">
+            <div class="project-heading">
+              <h3>Full-Stack User Management App</h3>
+              <a href="https://github.com/yeshi-830/full-stack-project">View on GitHub</a>
+            </div>
+            <p>
+              Full-stack application demonstrating frontend and backend
+              integration with an API and database.
+            </p>
+            <span class="project-tech">React · Node.js · Express.js · MySQL</span>
+          </article>
+        </section>
+
+        <section class="resume-section">
+          <h2>Professional Focus</h2>
+          <p class="focus-line">
+            Developing practical frontend and backend skills through project
+            work, with a goal of building useful and reliable web applications.
+          </p>
+        </section>
+      </main>
+    </article>
+  </body>
+</html>

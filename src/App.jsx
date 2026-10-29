@@ -277,6 +277,13 @@ function App() {
                 <a className="btn btn-outline" href="#contact">
                   Contact Me
                 </a>
+                <a
+                  className="btn btn-outline"
+                  href="/Mihiretu-Yeshi-CV.pdf"
+                  download="Mihiretu-Yeshi-CV.pdf"
+                >
+                  Download CV <span aria-hidden="true">↓</span>
+                </a>
               </div>
 
               <div className="social-links hero-socials">
