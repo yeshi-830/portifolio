@@ -6,6 +6,8 @@ import "./App.css";
 
 const EMAIL = "mihiretuyeshi@gmail.com";
 const GITHUB = "https://github.com/yeshi-830";
+const PHONE = "0953632191";
+const TELEGRAM = "https://t.me/mire1212";
 
 const roles = [
   "Aspiring Full-Stack Developer",
@@ -486,6 +488,29 @@ function App() {
                     <span>
                       <strong>Email</strong>
                       <small>{EMAIL}</small>
+                    </span>
+                    <span className="contact-arrow">↗</span>
+                  </a>
+
+                  <a className="contact-card" href={`tel:${PHONE}`}>
+                    <span className="contact-card-icon">📞</span>
+                    <span>
+                      <strong>Phone</strong>
+                      <small>{PHONE}</small>
+                    </span>
+                    <span className="contact-arrow">↗</span>
+                  </a>
+
+                  <a
+                    className="contact-card"
+                    href={TELEGRAM}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <span className="contact-card-icon">✈️</span>
+                    <span>
+                      <strong>Telegram</strong>
+                      <small>@mire1212</small>
                     </span>
                     <span className="contact-arrow">↗</span>
                   </a>
