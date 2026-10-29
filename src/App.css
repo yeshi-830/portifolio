@@ -1294,3 +1294,386 @@ body::after {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ==========================================
+   YESHI.DEV — PROFESSIONAL DESIGN UPGRADE
+   Add this below the existing App.css styles
+========================================== */
+
+/* Smoother overall appearance */
+.portfolio {
+  isolation: isolate;
+}
+
+::selection {
+  background: var(--accent-strong);
+  color: #ffffff;
+}
+
+.section {
+  padding-block: clamp(68px, 8vw, 100px);
+}
+
+.section-heading {
+  margin-bottom: 48px;
+}
+
+.section-heading p {
+  max-width: 560px;
+}
+
+/* Cleaner, more polished navigation */
+.header {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.035);
+}
+
+.logo {
+  transition: opacity 0.2s ease;
+}
+
+.logo:hover {
+  opacity: 0.8;
+}
+
+.nav-links > a {
+  transition: color 0.2s ease;
+}
+
+.theme-button,
+.menu-toggle {
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.theme-button:hover,
+.menu-toggle:hover {
+  border-color: var(--accent);
+  background: var(--surface-hover);
+}
+
+/* Stronger hero section */
+.hero {
+  position: relative;
+}
+
+.hero-container {
+  gap: clamp(32px, 5vw, 65px);
+}
+
+.hero-label {
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+}
+
+.hero h1 {
+  letter-spacing: -2.4px;
+  line-height: 1.12;
+}
+
+.hero-description {
+  max-width: 540px;
+  font-size: 16px;
+}
+
+.hero-image {
+  box-shadow:
+    0 25px 65px rgba(0, 0, 0, 0.18),
+    0 0 0 8px rgba(139, 92, 246, 0.06);
+}
+
+.hero-image img {
+  transition: transform 0.5s ease;
+}
+
+.hero-image:hover img {
+  transform: scale(1.035);
+}
+
+.floating-card {
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: transform 0.25s ease;
+}
+
+.floating-card-top:hover {
+  transform: translateY(-4px);
+}
+
+.floating-card-bottom:hover {
+  transform: translateY(4px);
+}
+
+/* More refined buttons */
+.btn {
+  min-height: 50px;
+  border-radius: 13px;
+  letter-spacing: 0.1px;
+}
+
+.btn-primary {
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.2);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.06);
+}
+
+.btn:active,
+.theme-button:active,
+.menu-toggle:active {
+  transform: scale(0.98);
+}
+
+/* Consistent card styling */
+.stat-card,
+.about-card,
+.skill-card,
+.project-card,
+.contact-card,
+.contact-form {
+  border-radius: 20px;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+.stat-card:hover,
+.skill-card:hover {
+  box-shadow: var(--shadow);
+}
+
+.about-card {
+  padding: clamp(24px, 4vw, 38px);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.025);
+}
+
+.about-content p {
+  font-size: 15px;
+}
+
+/* Skills: subtle, consistent hover effects */
+.skill-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+}
+
+.skill-icon,
+.project-icon {
+  transition: transform 0.25s ease;
+}
+
+.skill-card:hover .skill-icon,
+.project-card:hover .project-icon {
+  transform: translateY(-3px) scale(1.04);
+}
+
+/* Projects: stronger visual hierarchy */
+.project-card {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.025);
+}
+
+.project-card::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  content: "";
+  background: var(--gradient);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover::before {
+  transform: scaleX(1);
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+}
+
+.project-card h3 {
+  font-size: 20px;
+  letter-spacing: -0.4px;
+}
+
+.project-card p {
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.project-category,
+.project-status,
+.project-tech span {
+  line-height: 1.5;
+}
+
+.project-tech span {
+  border-radius: 8px;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.project-card:hover .project-tech span {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+}
+
+.project-links a {
+  transition:
+    color 0.2s ease,
+    gap 0.2s ease;
+}
+
+.project-links a:hover {
+  gap: 12px;
+}
+
+/* Contact: more comfortable form fields */
+.contact-layout {
+  gap: clamp(24px, 4vw, 42px);
+}
+
+.contact-form {
+  padding: clamp(22px, 3vw, 32px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
+}
+
+.contact-form input,
+.contact-form textarea {
+  border-radius: 12px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.12);
+}
+
+.contact-card:hover {
+  box-shadow: var(--shadow);
+}
+
+.contact-submit {
+  cursor: pointer;
+}
+
+/* Footer refinement */
+.footer {
+  padding-block: 38px;
+}
+
+.footer-logo {
+  font-size: 24px;
+}
+
+.footer-content > small {
+  letter-spacing: 0.2px;
+}
+
+/* Light theme: soft, clean surfaces */
+body.light-mode .portfolio {
+  background:
+    radial-gradient(
+      ellipse at 10% 5%,
+      rgba(124, 58, 237, 0.055),
+      transparent 32rem
+    ),
+    radial-gradient(
+      ellipse at 95% 40%,
+      rgba(8, 145, 178, 0.045),
+      transparent 30rem
+    ),
+    var(--bg);
+}
+
+body.light-mode .project-card,
+body.light-mode .skill-card,
+body.light-mode .stat-card,
+body.light-mode .about-card,
+body.light-mode .contact-form {
+  box-shadow: 0 10px 32px rgba(37, 46, 78, 0.045);
+}
+
+body.light-mode .project-card:hover,
+body.light-mode .skill-card:hover,
+body.light-mode .stat-card:hover {
+  box-shadow: 0 18px 40px rgba(37, 46, 78, 0.1);
+}
+
+/* Tablet and mobile refinements */
+@media (max-width: 1000px) {
+  .hero h1 {
+    letter-spacing: -1.7px;
+  }
+
+  .project-card {
+    padding: 23px;
+  }
+}
+
+@media (max-width: 700px) {
+  .section {
+    padding-block: 64px;
+  }
+
+  .section-heading {
+    margin-bottom: 32px;
+  }
+
+  .hero {
+    padding-top: 48px;
+  }
+
+  .hero h1 {
+    letter-spacing: -1.4px;
+  }
+
+  .hero-description {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .hero-image-wrapper {
+    overflow: visible;
+  }
+
+  .project-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .about-card,
+  .contact-form {
+    border-radius: 17px;
+  }
+
+  .contact-card {
+    padding: 15px;
+  }
+
+  .back-to-top {
+    border-radius: 13px;
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-image img,
+  .floating-card,
+  .project-card,
+  .skill-card,
+  .stat-card,
+  .btn {
+    transition: none;
+  }
+}
