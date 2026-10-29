@@ -97,6 +97,11 @@ const projects = [
   },
 ];
 
+const projectCategories = ["All", ...new Set(projects.map((project) => project.category))];
+const projectTechnologyCount = new Set(
+  projects.flatMap((project) => project.technologies),
+).size;
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
@@ -104,6 +109,14 @@ function App() {
   const [typedText, setTypedText] = useState("");
   const [showTopButton, setShowTopButton] = useState(false);
   const [contactMessage, setContactMessage] = useState("");
+  const [selectedProjectCategory, setSelectedProjectCategory] = useState("All");
+
+  const filteredProjects =
+    selectedProjectCategory === "All"
+      ? projects
+      : projects.filter(
+          (project) => project.category === selectedProjectCategory,
+        );
 
   // Apply the selected theme.
   useEffect(() => {
@@ -409,11 +422,83 @@ function App() {
               </p>
             </div>
 
+            <div className="projects-dashboard">
+              <div className="dashboard-heading">
+                <div>
+                  <span className="dashboard-eyebrow">PORTFOLIO DASHBOARD</span>
+                  <h3>Project overview</h3>
+                  <p>A quick look at what I'm building and the tools I use.</p>
+                </div>
+                <span className="dashboard-live">
+                  <span aria-hidden="true" />
+                  Live overview
+                </span>
+              </div>
+
+              <div className="dashboard-metrics">
+                <div className="dashboard-metric">
+                  <strong>{projects.length}</strong>
+                  <span>Total projects</span>
+                </div>
+                <div className="dashboard-metric">
+                  <strong>
+                    {projects.filter((project) => project.status === "In Development").length}
+                  </strong>
+                  <span>In development</span>
+                </div>
+                <div className="dashboard-metric">
+                  <strong>{projectCategories.length - 1}</strong>
+                  <span>Project categories</span>
+                </div>
+                <div className="dashboard-metric">
+                  <strong>{projectTechnologyCount}</strong>
+                  <span>Technologies used</span>
+                </div>
+              </div>
+
+              <div className="project-filter">
+                <div className="project-filter-heading">
+                  <strong>Explore projects</strong>
+                  <span aria-live="polite">
+                    Showing {filteredProjects.length} of {projects.length}
+                  </span>
+                </div>
+                <div
+                  className="project-filter-options"
+                  role="group"
+                  aria-label="Filter projects by category"
+                >
+                  {projectCategories.map((category) => {
+                    const count =
+                      category === "All"
+                        ? projects.length
+                        : projects.filter(
+                            (project) => project.category === category,
+                          ).length;
+
+                    return (
+                      <button
+                        className={`project-filter-button${selectedProjectCategory === category ? " active" : ""}`}
+                        key={category}
+                        type="button"
+                        aria-pressed={selectedProjectCategory === category}
+                        onClick={() => setSelectedProjectCategory(category)}
+                      >
+                        {category}
+                        <span>{count}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
             <div className="projects-grid">
-              {projects.map((project, index) => (
+              {filteredProjects.map((project, index) => (
                 <motion.article
                   className="project-card"
                   key={project.id}
+                  layout
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.1 }}

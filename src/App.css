@@ -792,6 +792,173 @@ body::after {
   justify-content: center;
 }
 
+.projects-dashboard {
+  margin-bottom: 26px;
+  padding: clamp(20px, 3vw, 30px);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background:
+    radial-gradient(ellipse at 100% 0, rgba(139, 92, 246, 0.1), transparent 24rem),
+    var(--surface);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
+}
+
+.dashboard-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.dashboard-eyebrow {
+  color: var(--accent-2);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+}
+
+.dashboard-heading h3 {
+  margin: 8px 0 5px;
+  font-size: 21px;
+  letter-spacing: -0.3px;
+}
+
+.dashboard-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.dashboard-live {
+  flex-shrink: 0;
+  padding: 8px 11px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.dashboard-live > span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.12);
+}
+
+.dashboard-metrics {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.dashboard-metric {
+  min-width: 0;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: var(--bg);
+}
+
+.dashboard-metric strong {
+  font-size: clamp(22px, 3vw, 29px);
+  font-weight: 850;
+  line-height: 1.2;
+  background: var(--gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dashboard-metric span {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.project-filter {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
+.project-filter-heading {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.project-filter-heading strong {
+  font-size: 13px;
+}
+
+.project-filter-heading > span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.project-filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.project-filter-button {
+  min-height: 38px;
+  padding: 7px 11px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.project-filter-button:hover {
+  border-color: var(--accent);
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+.project-filter-button.active {
+  border-color: transparent;
+  background: var(--gradient);
+  color: #fff;
+}
+
+.project-filter-button > span {
+  min-width: 19px;
+  padding: 2px 5px;
+  border-radius: 999px;
+  background: rgba(127, 127, 127, 0.16);
+  font-size: 10px;
+  text-align: center;
+}
+
+.project-filter-button.active > span {
+  background: rgba(255, 255, 255, 0.2);
+}
+
 /* ===== Contact ===== */
 
 .contact-layout {
@@ -1620,6 +1787,10 @@ body.light-mode .stat-card:hover {
   .project-card {
     padding: 23px;
   }
+
+  .dashboard-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 700px) {
@@ -1650,6 +1821,33 @@ body.light-mode .stat-card:hover {
 
   .project-card:hover {
     transform: translateY(-3px);
+  }
+
+  .projects-dashboard {
+    padding: 20px;
+    border-radius: 18px;
+  }
+
+  .dashboard-heading {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .dashboard-heading h3 {
+    font-size: 19px;
+  }
+
+  .dashboard-metrics {
+    margin-top: 18px;
+    gap: 9px;
+  }
+
+  .dashboard-metric {
+    padding: 13px;
+  }
+
+  .project-filter-heading {
+    align-items: flex-start;
   }
 
   .about-card,
